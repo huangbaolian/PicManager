@@ -29,7 +29,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
     ContentResolver contentResolver;
-    List<String> paths = new ArrayList<>();
+    ArrayList<String> paths = new ArrayList<>();
     List<String> parentDirs = new ArrayList<>();
     List<String> parentImage= new ArrayList<>();
 
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         gridView = findViewById(R.id.gridView);
         contentResolver = this.getContentResolver();
-        initAdapter();
         requestPower();
         getImage();
+        initAdapter();
     }
 
 
@@ -51,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(MainActivity.this,ChildActivity.class);
+                intent.putStringArrayListExtra("paths",paths);
+                intent.putExtra("dirName",parentDirs.get(i));
+                startActivity(intent);
+
             }
         });
     }

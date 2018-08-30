@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        picManage {
+            keyAlias 'picManage'
+            keyPassword '123456'
+            storeFile file('D:/APK/apkjk/picManage.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.pic.picmanager"
