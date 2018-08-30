@@ -1,6 +1,7 @@
 package com.example.pic.picmanager;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends BaseAdapter {
-    List<String> paths = new ArrayList<>();
+    List<Bitmap> paths = new ArrayList<>();
     Context mContext;
-    public MyAdapter(Context mContext, List<String> paths) {
+    public MyAdapter(Context mContext, List<Bitmap> paths) {
         this.paths = paths;
         this.mContext = mContext;
     }
@@ -39,7 +40,7 @@ public class MyAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.item,null);
         ImageView imageView = view.findViewById(R.id.image);
-        imageView.setImageURI(Uri.parse(paths.get(i)));
+        imageView.setImageBitmap(paths.get(i));
         return view;
     }
 }

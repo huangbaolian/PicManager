@@ -1,6 +1,7 @@
 package com.example.pic.picmanager;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,9 @@ import java.util.List;
 
 public class MyparentAdapter extends BaseAdapter {
     List<String> parentDirs = new ArrayList<>();
-    List<String> parentImage;
+    List<Bitmap> parentImage;
     Context mContext;
-    public MyparentAdapter(Context mContext, List<String> parentDirs,List<String> parentImage) {
+    public MyparentAdapter(Context mContext, List<String> parentDirs, List<Bitmap> parentImage) {
         this.parentDirs = parentDirs;
         this.mContext = mContext;
         this.parentImage = parentImage;
@@ -43,7 +44,7 @@ public class MyparentAdapter extends BaseAdapter {
         View view = inflater.inflate(R.layout.parent_item,null);
         ImageView imageView = view.findViewById(R.id.p_image);
         TextView textView = view.findViewById(R.id.p_text);
-        imageView.setImageURI(Uri.parse(parentImage.get(i)));
+        imageView.setImageBitmap(parentImage.get(i));
         textView.setText(parentDirs.get(i));
         return view;
     }
