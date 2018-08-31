@@ -10,14 +10,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyparentAdapter extends BaseAdapter {
     List<String> parentDirs = new ArrayList<>();
-    List<Bitmap> parentImage;
+    List<String> parentImage;
     Context mContext;
-    public MyparentAdapter(Context mContext, List<String> parentDirs, List<Bitmap> parentImage) {
+    public MyparentAdapter(Context mContext, List<String> parentDirs, List<String> parentImage) {
         this.parentDirs = parentDirs;
         this.mContext = mContext;
         this.parentImage = parentImage;
@@ -44,7 +46,10 @@ public class MyparentAdapter extends BaseAdapter {
         View view = inflater.inflate(R.layout.parent_item,null);
         ImageView imageView = view.findViewById(R.id.p_image);
         TextView textView = view.findViewById(R.id.p_text);
-        imageView.setImageBitmap(parentImage.get(i));
+        Glide.with(mContext)
+                .load(parentImage.get(i))
+                .into(imageView);
+//        imageView.setImageURI(Uri.parse(parentImage.get(i)));
         textView.setText(parentDirs.get(i));
         return view;
     }

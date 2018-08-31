@@ -9,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends BaseAdapter {
-    List<Bitmap> paths = new ArrayList<>();
+    List<String> paths = new ArrayList<>();
     Context mContext;
-    public MyAdapter(Context mContext, List<Bitmap> paths) {
+    public MyAdapter(Context mContext, List<String> paths) {
         this.paths = paths;
         this.mContext = mContext;
     }
@@ -40,7 +42,9 @@ public class MyAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.item,null);
         ImageView imageView = view.findViewById(R.id.image);
-        imageView.setImageBitmap(paths.get(i));
+        Glide.with(mContext)
+                .load(paths.get(i))
+                .into(imageView);
         return view;
     }
 }
